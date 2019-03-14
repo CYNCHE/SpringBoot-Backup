@@ -1,0 +1,90 @@
+#registration-body {
+    background: url("../image/background.png");
+}
+
+
+.fullscreenvideo {
+    position: absolute;
+    margin: 0em !important;
+    padding: 0em !important;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -100;
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+    -webkit-transition: 1s opacity;
+    transition: 1s opacity;
+}
+
+.videocontainer {
+    margin: 0em !important;
+    padding: 0em !important;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+
+}
+
+.videocontainer:before {
+    margin: 0em !important;
+    padding: 0em !important;
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: block;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    /*background:rgba(25,29,34,.65);*/
+}
+
+.m-segment {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.m-column {
+    max-width: 450px;
+}
+
+.m-center {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    margin: auto;
+    width: 350px;
+    height: 350px;
+    transform: translateX(-50%) translateY(0%);
+}
+
+.logo-position {
+    position: absolute;
+    top: 1%;
+    left: 1%;
+    z-index: 100;
+}
+
+.m-form {
+    position: absolute;
+    top: 20%;
+    margin: auto;
+    width: 450px;
+    height: 500px;
+
+}
+
+.m-font-size {
+    font-size: 120%;
+}
+
+.m-error-msg {
+    font-weight: bold;
+    color: #f12235;
+    padding: 5px;
+}

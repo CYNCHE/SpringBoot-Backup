@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Title</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+	<link rel="stylesheet" href="../static/css/me.css" th:href="@{/css/me.css}">
+</head>
+
+
+<body onload="myFunction()" style="margin:0;">
+
+<div id="loader"></div>
+
+<div class="ui segment m-segment basic" id="myDiv" style="display: none">
+	<div class="videocontainer" th:switch="${WeatherResponse.getCode()}">
+		<video class="fullscreenvideo" playsinline="" autoplay="" muted="" loop=""
+					 style="z-index: -100; width: 100%; height:100%; object-fit: fill;">
+			<source th:case="0" src="../static/video/thunder.mp4" th:src="@{/video/thunder.mp4}" type="video/mp4">
+			<source th:case="1" src="../static/video/drizzle.mp4" th:src="@{/video/drizzle.mp4}" type="video/mp4">
+			<source th:case="2" src="../static/video/rainy.mp4" th:src="@{/video/rainy.mp4}" type="video/mp4">
+			<source th:case="3" src="../static/video/snowy.mp4" th:src="@{/video/snowy.mp4}" type="video/mp4">
+			<source th:case="4" src="../static/video/foggy.mp4" th:src="@{/video/foggy.mp4}" type="video/mp4">
+			<source th:case="5" src="../static/video/clear.mp4" th:src="@{/video/clear.mp4}" type="video/mp4">
+			<source th:case="6" src="../static/video/cloudy.mp4" th:src="@{/video/cloudy.mp4}" type="video/mp4">
+
+		</video>
+	</div>
+
+
+	<div class="ui inverted circular segment content">
+		<h1 class="ui header m-header" th:text="${WeatherResponse.name}">Paris</h1>
+		<h2 class="ui header m-header">Temp: <span th:text="${WeatherResponse.temperature.temp}"></span>°</h2>
+		<h2 class="ui header m-header" th:text="${WeatherResponse.weathers[0].main}">Rainy</h2>
+
+	</div>
+
+	<div class="ui segment forecast">
+		<div class="ui inverted divided horizontal list " th:each="forecast, iter : ${forecasts}">
+			<div class="item" th:if="${iter.index} % 8 == 0 and ${iter.index} != 0">
+				<h1 class="ui header m-header1" th:text="${forecast.dayOfWeek}"></h1>
+				<h2 class="ui header m-header2" th:text="${forecast.date}"></h2>
+				<h2 class="ui header m-header2"><span th:text="${forecast.temperature.temp_max}"></span>°/<span
+								th:text="${forecast.temperature.temp_min}"></span>°</h2>
+				<h2 class="ui header m-header1" th:text="${forecast.weathers[0].main}">hah</h2>
+			</div>
+
+
+		</div>
+		<div style="dispaly: block; text-align:center">
+			<form name="search" action="#" th:action="@{/search}" method="post" target="_blank"
+						style="margin-left: auto; margin-right: auto; margin-top: 10px; display: inline-block">
+				<div class="ui icon inverted input">
+					<input name="city" type="text" placeholder="Search another city....">
+					<i onclick="document.forms['search'].submit()" class="search link icon"></i>
+				</div>
+			</form>
+		</div>
+	</div>
+
+
+</div>
+
+</body>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+<script>
+    var myVar;
+
+    function myFunction() {
+        myVar = setTimeout(showPage, 0);
+    }
+
+    function showPage() {
+        document.getElementById("loader").style.display = "none";
+        document.getElementById("myDiv").style.display = "block";
+    }
+</script>
+
+
+</html>

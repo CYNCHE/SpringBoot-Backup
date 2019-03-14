@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Login</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+	<link rel="stylesheet" href="../static/css/me.css" th:href="@{/css/me.css}">
+</head>
+
+<body id="registration-body">
+<div class="logo-position">
+	<img src="../static/image/logo.png" th:src="@{/image/logo.png}" class="image" style="height: 100px; width: 100px;">
+</div>
+<div class="ui container" style="height: 100%">
+	<form name="registration" th:object="${userForm}" action="#" th:action="@{/stockpeak/registration}" method="post"
+				class="ui form m-form">
+		<div class="ui stacked segment">
+			<h2 class="ui dividig header">Registration</h2>
+			<div class="field">
+				<label class="m-font-size" for="username" style="font-size: 120%">Username</label>
+				<input type="text" id="username" name="username" th:field="*{username}" placeholder="Enter your username...">
+				<p class="m-error-msg" th:if="${#fields.hasErrors('username')}">Username can not be blank!</p>
+			</div>
+			<div class="field">
+				<label class="m-font-size" for="password" style="font-size: 120%">Password</label>
+				<input type="password" id="password" name="password" th:field="*{password}"
+							 placeholder="Enter your password...">
+				<p class="m-error-msg" th:if="${#fields.hasErrors('password')}">Password can not be blank!</p>
+			</div>
+			<div class="field">
+				<label class="m-font-size" for="confirmPassword" style="font-size: 120%">Confirm password</label>
+				<input type="password" id="confirmPassword" name="confirmPassword" th:field="*{confirmPassword}"
+							 placeholder="Re-enter your password...">
+				<p class="m-error-msg" th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}"></p>
+			</div>
+			<div class="field">
+				<label class="m-font-size" for="email" style="font-size: 120%">Email</label>
+				<input type="text" id="email" name="email" th:field="*{email}" placeholder="Enter your email...">
+				<p class="m-error-msg" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
+			</div>
+			<div class="ui basic center aligned segment">
+				<div class="ui teal button" onclick="document.forms['registration'].submit()">Submit</div>
+			</div>
+		</div>
+		<div class="ui error message"></div>
+
+	</form>
+
+</div>
+
+
+</body>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+
+</html>
